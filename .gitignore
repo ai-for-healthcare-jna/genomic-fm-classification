@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific: downloaded dataset cache and saved metrics/checkpoints.
+# Both are regenerable from src/data_loading.py and src/train.py, so they
+# don't belong in version control.
+data/*
+!data/.gitkeep
+results/*
+!results/.gitkeep

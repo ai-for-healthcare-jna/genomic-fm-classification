@@ -1,0 +1,15 @@
+# Pinned to the last transformers 4.x line: 5.x breaks HyenaDNA's
+# trust_remote_code modeling classes, which predate that API. Verified on
+# CPU (smoke tests) and CUDA/T4 (training).
+torch==2.7.1
+transformers==4.57.6
+tokenizers==0.22.2
+datasets==2.20.0
+accelerate==0.34.2
+
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.4.2
+
+ipykernel==6.29.4
+jupyter==1.0.0
