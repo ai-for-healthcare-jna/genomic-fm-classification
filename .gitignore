@@ -217,10 +217,12 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Project-specific: downloaded dataset cache and saved metrics/checkpoints.
-# Both are regenerable from src/data_loading.py and src/train.py, so they
-# don't belong in version control.
+# Project-specific: downloaded dataset cache is regenerable, so it's kept
+# out of version control. The trained head + metrics under results/ are
+# small and are the actual output of this project, so those are tracked.
 data/*
 !data/.gitkeep
 results/*
 !results/.gitkeep
+!results/classifier_head.pt
+!results/metrics.json
