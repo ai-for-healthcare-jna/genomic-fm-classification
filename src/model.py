@@ -47,6 +47,22 @@ def build_attention_mask(input_ids: torch.Tensor, tokenizer: PreTrainedTokenizer
     return (input_ids != tokenizer.pad_token_id).long()
 
 
+def make_collate_fn(tokenizer: PreTrainedTokenizerBase):
+    """Tokenize a batch on the fly, padded to the batch's own max length.
+
+    Shared by train.py and evaluate.py so both tokenize identically.
+    """
+
+    def collate(batch):
+        seqs = [ex["seq"] for ex in batch]
+        labels = torch.tensor([ex["label"] for ex in batch], dtype=torch.long)
+        input_ids = tokenizer(seqs, padding=True, truncation=True, return_tensors="pt")["input_ids"]
+        attention_mask = build_attention_mask(input_ids, tokenizer)
+        return input_ids, attention_mask, labels
+
+    return collate
+
+
 def _last_token_pool(hidden_states: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
     """Pool via each sequence's last non-padded hidden state.
 

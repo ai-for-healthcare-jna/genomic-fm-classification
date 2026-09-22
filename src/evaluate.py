@@ -15,8 +15,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from torch.utils.data import DataLoader
 
 from data_loading import get_tiny_subset, load_enhancer_dataset
-from model import HyenaDNAClassifier, load_tokenizer
-from train import make_collate_fn
+from model import HyenaDNAClassifier, load_tokenizer, make_collate_fn
 
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results"
 
@@ -66,13 +65,13 @@ def main(args: argparse.Namespace) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate the trained head on the test split")
-    parser.add_argument("--batch_size", type=int, default=8)
+    parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument(
         "--max_test_samples",
         type=int,
         default=None,
-        help="Cap test set size (e.g. 20 for a fast smoke test).",
+        help="Cap test set size (e.g. 20 for a fast smoke test). Default: full split.",
     )
     return parser.parse_args()
 
