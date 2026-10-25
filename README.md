@@ -1,4 +1,4 @@
-# Genomic Foundation Model Fine-Tuning: Human Enhancer Classification
+# Linear-Probe Evaluation of HyenaDNA for Human Enhancer Classification
 
 Linear-probe evaluation of [HyenaDNA](https://huggingface.co/LongSafari/hyenadna-tiny-1k-seqlen-hf)'s pretrained representations on binary classification of DNA sequences as human enhancers or not, on the [Genomic Benchmarks](https://github.com/ML-Bioinfo-CEITEC/genomic_benchmarks) `human_enhancers_cohn` task.
 
